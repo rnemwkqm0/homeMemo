@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LockScreenActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:label="홈 메모"/>
         <service android:name=".ScreenService"/>
         <receiver android:name=".ScreenReceiver"/>
     </application>

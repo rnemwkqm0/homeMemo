@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,10 +30,12 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.OnBtn:
+                    Toast.makeText(MainActivity.this, "홈 메모의 작동을 ON합니다.", Toast.LENGTH_LONG).show();
                     onIntent = new Intent(MainActivity.this, ScreenService.class);
                     startService(onIntent);
                     break;
                 case R.id.OffBtn:
+                    Toast.makeText(MainActivity.this, "홈 메모의 작동을 OFF합니다.", Toast.LENGTH_LONG).show();
                     offIntent = new Intent(MainActivity.this, ScreenService.class);
                     stopService(offIntent);
                     break;
