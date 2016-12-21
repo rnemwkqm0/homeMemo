@@ -2,13 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F3F3"
-    android:orientation="vertical">
-
+    android:background="#F3F3F3">
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linear">
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -27,9 +26,9 @@
             android:background="#888888"
             android:textColor="#ffffff"
             android:id="@+id/addMemo"
-            android:text="메모 추가"
+            android:text="추가"
             android:textSize="15pt"
-            android:onClick="makeMemo"
+            android:onClick="memoClick"
             />
     </LinearLayout>
 
@@ -41,7 +40,6 @@
         android:id="@+id/lockReleaseBtn"
         android:text="꾹 눌러서 잠금해제"
         android:textSize="12pt"
-        android:onClick="onClick"
         android:layout_alignParentBottom="true"
         />
 </RelativeLayout>
