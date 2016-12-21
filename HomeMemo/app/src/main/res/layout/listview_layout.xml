@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/item_counter"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_clear_black_24dp"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="64dp"
+        android:layout_marginLeft="1dp"
+        android:id="@+id/listviewline"
+        android:background="#DADADC"
+        android:layout_toLeftOf="@+id/item_counter"/>
+
+    <TextView
+        android:id="@+id/item_title"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_marginLeft="8dp"
+        android:layout_toLeftOf="@+id/listviewline"
+        android:gravity="center_vertical"
+        android:text="새 메모"
+        android:textSize="20dp" />
+
+</RelativeLayout>

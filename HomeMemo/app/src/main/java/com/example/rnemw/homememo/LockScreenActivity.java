@@ -1,29 +1,15 @@
 package com.example.rnemw.homememo;
 
-import android.app.ListFragment;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
+import android.widget.SimpleCursorAdapter;
 
 /**
  * Created by rnemw on 2016-12-19.
@@ -31,6 +17,11 @@ import java.util.ArrayList;
 
 public class LockScreenActivity extends AppCompatActivity {
     private Button releaseBtn;
+    private DBHelper helper;
+    private SQLiteDatabase db;
+    private Cursor c;
+    SimpleCursorAdapter adapter;
+    ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -45,24 +36,44 @@ public class LockScreenActivity extends AppCompatActivity {
             }
         });
 
+        helper = new DBHelper(this);
+        try {
+            db = helper.getWritableDatabase();
+        } catch (SQLiteException e) {
+            db = helper.getReadableDatabase();
+        }
+        c = db.rawQuery("SELECT * FROM contacts", null);
+        String[] from = {"memo"};
+        int[] to = {android.R.id.text1, android.R.id.text2};
+
+        adapter = new SimpleCursorAdapter(this, R.layout.listview_layout, c, from, to);
+        list = (ListView)findViewById(R.id.listview);
+        // 리스트뷰 객체에 어댑터 설정
+        list.setAdapter(adapter);
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                 | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.lock_screen_menu, menu);       //작성버튼이 있는 메뉴
-        return super.onCreateOptionsMenu(menu);
+    public void makeMemo(View v){
+        if(v.getId() == R.id.addMemo){
+            db.execSQL("INSERT INTO contacts VALUES (null, '새 메모');");
+            c = db.rawQuery("SELECT * FROM contacts", null);
+            String[] from = {"memo"};
+            int[] to = {android.R.id.text1, android.R.id.text2};
+
+            adapter = new SimpleCursorAdapter(this, R.layout.listview_layout, c, from, to);
+            list = (ListView)findViewById(R.id.listview);
+            // 리스트뷰 객체에 어댑터 설정
+            list.setAdapter(adapter);
+        }
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()) {
-            case R.id.addList:
+    protected void onDestroy() {
+        super.onDestroy();
 
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        helper.close();
+        c.close();
     }
 }

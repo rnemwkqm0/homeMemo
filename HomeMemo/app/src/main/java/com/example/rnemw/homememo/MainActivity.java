@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private Button onBtn, offBtn;
@@ -22,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
         BtnOnClickListener onClickListener = new BtnOnClickListener();
         onBtn.setOnClickListener(onClickListener);
         offBtn.setOnClickListener(onClickListener);
-
     }
 
     class BtnOnClickListener implements Button.OnClickListener {
