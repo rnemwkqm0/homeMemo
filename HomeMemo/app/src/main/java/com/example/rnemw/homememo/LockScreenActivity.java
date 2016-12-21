@@ -7,20 +7,13 @@ import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
-import android.view.ContextMenu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by rnemw on 2016-12-19.
@@ -33,7 +26,6 @@ public class LockScreenActivity extends AppCompatActivity {
     private Cursor c;
     SimpleCursorAdapter adapter;
     ListView list;
-    EditText deletetext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +55,6 @@ public class LockScreenActivity extends AppCompatActivity {
         // 리스트뷰 객체에 어댑터 설정
         list.setAdapter(adapter);
 
-        deletetext = new EditText(this);
         AlertDialog.Builder dialog = new AlertDialog.Builder(LockScreenActivity.this);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
