@@ -1,5 +1,7 @@
 package com.example.rnemw.homememo;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +9,8 @@ import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -55,7 +59,6 @@ public class LockScreenActivity extends AppCompatActivity {
         // 리스트뷰 객체에 어댑터 설정
         list.setAdapter(adapter);
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(LockScreenActivity.this);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View vi, int position, long id) {

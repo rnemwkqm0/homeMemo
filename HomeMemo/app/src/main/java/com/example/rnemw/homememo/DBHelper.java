@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DBName = "mycontacts.db";
-    private static final int DBVer = 12;
+    private static final int DBVer = 14;
 
     public DBHelper(Context context) {
         super(context, DBName, null, DBVer);
